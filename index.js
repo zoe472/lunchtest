@@ -30,13 +30,12 @@ const connection = mysql.createConnection({
   });
 
 app.get('/', (req, res) => {
-    // connection.query(
-    //     'SELECT * FROM users',
-    //     (error, results) => {
-    //     res.render('index.ejs');
-    //     }
-    // );
-    res.render('index.ejs');
+    connection.query(
+        'SELECT * FROM users',
+        (error, results) => {
+        res.render('index.ejs');
+        }
+    );
   });
 
   app.post('/confirmation', (req, res) => {
