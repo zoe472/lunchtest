@@ -7,7 +7,13 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>ご注文ありがとうございました。</h1>
+    
+  <p>ID
+    <span>注文日</span>
+    <span>注文者</span>
+    <span>ご飯の量</span>
+    <span>注文数</span>
+  </p>
     <% orderTable.forEach((order) => { %>
         <p><%= order.id %>
           <span><%= order.orderDate %></span>
@@ -15,7 +21,7 @@
           <span><%= order.rice %></span>
           <span><%= order.orderCount %></span>
         </p>
-      <% }) %>
+    <% }) %>
 
       <br>
       <div><a href="/">ページトップへ戻る</a></div>

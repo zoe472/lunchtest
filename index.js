@@ -57,6 +57,15 @@ app.get('/', (req, res) => {
      }
     )
   });
+
+  app.get('/admin', (req, res) => {
+    connection.query(
+        'SELECT * FROM orders',
+        (error, results) => {
+          res.render('adminpage.ejs',{orderTable: results});
+        }
+    );
+  });
     
 //app.listen(3000);
 const PORT=process.env.PORT || 3000;
