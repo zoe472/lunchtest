@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>弁当注文フォーム</title>
+    <meta name="Author" content=""/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>ご注文ありがとうございました。</h1>
+    <% orderTable.forEach((order) => { %>
+        <p><%= order.id %>
+          <span><%= order.orderDate %></span>
+          <span><%= order.orderUserID %></span>
+          <span><%= order.rice %></span>
+          <span><%= order.orderCount %></span>
+        </p>
+      <% }) %>
+</body>
+</html>

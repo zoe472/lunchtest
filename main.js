@@ -1,15 +1,9 @@
-const express = require('express');
-const mysql = require('mysql');
-const app = express();
+var express = require('express');
+var mysql = require('mysql');
+var app = express();
 
-//テスト　ログインアカウントの取得******
-var os = require('os');
-//全情報
-console.log(os.userInfo());
-//ユーザー名のみ
-console.log(os.userInfo().username);
-
-//************************************
+//フォームの値を受け取るために必要な典型文
+app.use(express.urlencoded({extended: false}));
 
 //DBへの接続情報
 const connection = mysql.createConnection({
@@ -32,10 +26,29 @@ app.get('/', (req, res) => {
     connection.query(
         'SELECT * FROM users',
         (error, results) => {
-          console.log(results);
         res.render('index.ejs');
         }
     );
   });
 
+  app.post('/confirmation', (req, res) => {
+    var today = new Date()
+    if (req.body.rice === undefined){
+      req.body.rice = 0;
+    }
+    console.log(req.body.rice)
+    connection.query(
+      'INSERT INTO orders(orderDate,orderUserID,rice,orderCount) VALUES(?,?,?,?)',
+      [today,1,req.body.rice,req.body.OrderCount],
+        (error, results) => {
+          connection.query(
+          'SELECT * FROM orders',
+          (error, results) => {
+        res.render('result.ejs',{orderTable: results});
+         }
+       );
+     }
+    )
+  });
+    
 app.listen(3000);

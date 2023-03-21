@@ -9,18 +9,14 @@
 <body>
     <h1>弁当注文フォーム</h1>
 
-    <form action="#" method="post">
+    <form action="/confirmation" method="post">
         <label for="namelabel">注文者</label>
-        <input type="text"><br>
+        <input name="OrderUser" type="text"><br>
         <label for="namelabel">数量</label>
-        <input type="number"placeholder="注文する数量の入力"><br>
+        <input name="OrderCount" type="number"placeholder="注文する数量の入力"><br>
         <label for="namelabel">ごはんの量</label>
-        <label for="rice_nomal">
-            <input type="radio" name="rice" value="nomal" id="rice_nomal">
-            普通
-          </label>
-          <label for="rice_big">
-            <input type="radio" name="rice" value="big" id="rice_big">
+        <label for="rice_big">
+            <input type="checkbox" name="rice" value=1 id="rice_big">
             大盛り
         </label>
         <input type="submit" value="送信"><br>
