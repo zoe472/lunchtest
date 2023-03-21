@@ -5,13 +5,20 @@ var app = express();
 //フォームの値を受け取るために必要な典型文
 app.use(express.urlencoded({extended: false}));
 
-//DBへの接続情報
+// //DBへの接続情報(local)
+// const connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'seiya224',
+//     database: 'lunchtestDB'
+//   });
+//DBへの接続情報(本番)
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'seiya224',
-    database: 'lunchtestDB'
-  });
+  host: 'us-cdbr-east-06.cleardb.net',
+  user: 'b7a1cea9d1be85',
+  password: 'fad7bb6d',
+  database: 'heroku_d9c30221b1afa5e'
+});
 
   //DBへの接続失敗時にエラーを表示する
   connection.connect((err) => {
@@ -23,12 +30,13 @@ const connection = mysql.createConnection({
   });
 
 app.get('/', (req, res) => {
-    connection.query(
-        'SELECT * FROM users',
-        (error, results) => {
-        res.render('index.ejs');
-        }
-    );
+    // connection.query(
+    //     'SELECT * FROM users',
+    //     (error, results) => {
+    //     res.render('index.ejs');
+    //     }
+    // );
+    res.render('index.ejs');
   });
 
   app.post('/confirmation', (req, res) => {
